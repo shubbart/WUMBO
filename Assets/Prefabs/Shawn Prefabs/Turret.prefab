@@ -84,7 +84,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1692456223982878}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.59}
+  m_LocalPosition: {x: 0, y: 0, z: 0.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4023635349350644}
@@ -96,14 +96,14 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1560792917547804}
-  m_LocalRotation: {x: 0, y: -0.9660612, z: 0, w: 0.2583133}
+  m_LocalRotation: {x: 0, y: -0.9659258, z: 0, w: 0.2588191}
   m_LocalPosition: {x: 4.01, y: -0.007, z: 4.13}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
   - {fileID: 4023635349350644}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: -150.06, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -150, z: 0}
 --- !u!23 &23843065048735888
 MeshRenderer:
   m_ObjectHideFlags: 1
@@ -205,9 +205,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 619988bf0e89a3b43a08a0d0482d28a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  firingForce: {x: 0, y: 0, z: 0}
+  firingForce: 1000
   projectile: {fileID: 1262574603154452, guid: e533fb05497635a49912b69194a3d7a8, type: 2}
-  body: {fileID: 1560792917547804}
 --- !u!135 &135110742507086124
 SphereCollider:
   m_ObjectHideFlags: 1

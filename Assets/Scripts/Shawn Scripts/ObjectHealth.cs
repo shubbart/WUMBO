@@ -5,14 +5,36 @@ using UnityEngine;
 public class ObjectHealth : MonoBehaviour
 {
     public int health;
-
-	void Update ()
+    public bool isDead;
+    public enum typeOfDeath
     {
-        if (health <= 0)
-            Die();
+        Steam,
+        Vine
+    }
+
+    public typeOfDeath deathState;
+
+    void Update ()
+    {
+        if (health <= 0 && !isDead)
+            switch(deathState)
+            {
+                case typeOfDeath.Steam:
+                    steamDeath();
+                    break;
+                case typeOfDeath.Vine:
+                    vineDeath();
+                    break;
+            }
 	}
 
-    void Die()
+    void steamDeath()
+    {
+        GetComponent<ActivateParticleTimed>().timer = 15;
+        isDead = true;
+    }
+
+    void vineDeath()
     {
         Destroy(gameObject);
     }

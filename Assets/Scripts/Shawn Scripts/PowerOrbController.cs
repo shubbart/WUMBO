@@ -12,11 +12,13 @@ public class PowerOrbController : MonoBehaviour
     Rigidbody rbody;
 
     GameObject player;
+    PlayerManager pManager;
     Vector3 dir;
 
     void Start ()
     {
         player = GameObject.FindGameObjectWithTag("Player");
+        pManager = player.GetComponent<PlayerManager>();
         rbody = GetComponent<Rigidbody>();
         randomRotation = new Vector3(Random.Range(minRotationSpeed.x, maxRotationSpeed.x),
                             Random.Range(minRotationSpeed.y, maxRotationSpeed.y),
@@ -42,6 +44,7 @@ public class PowerOrbController : MonoBehaviour
     {
         if(collision.gameObject.tag == "Player")
         {
+            ++pManager.collectedOrbs;
             Destroy(gameObject);
         }
     }

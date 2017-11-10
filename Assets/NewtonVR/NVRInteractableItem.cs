@@ -38,6 +38,9 @@ namespace NewtonVR
 
         protected Dictionary<Collider, PhysicMaterial> MaterialCache = new Dictionary<Collider, PhysicMaterial>();
 
+        public bool rotationBasedOnPosition = false;
+        public Transform crankTransform;
+
         protected override void Awake()
         {
             base.Awake();
@@ -168,7 +171,20 @@ namespace NewtonVR
             Vector3 axis;
 
             positionDelta = (targetHandPosition - targetItemPosition);
-            rotationDelta = targetHandRotation * Quaternion.Inverse(targetItemRotation);
+
+            if (!rotationBasedOnPosition || crankTransform == null)
+                rotationDelta = targetHandRotation * Quaternion.Inverse(targetItemRotation);
+            else
+            {
+                rotationDelta = Quaternion.Euler(new Vector3((crankTransform.position - AttachedHand.transform.position).normalized.x,
+                                                              0,
+                                                             (crankTransform.position - AttachedHand.transform.position).normalized.z));
+                crankTransform.rotation = rotationDelta;
+
+                
+
+                Debug.Log(rotationDelta.eulerAngles);
+            }
 
 
             Vector3 velocityTarget = (positionDelta * velocityMagic) * Time.deltaTime;

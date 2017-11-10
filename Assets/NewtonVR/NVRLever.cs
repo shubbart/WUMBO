@@ -79,10 +79,12 @@ namespace NewtonVR
 
             if (AXLE.transform.localRotation.z < 0)
                 //addforce
-                srb.velocity = new Vector3(AXLE.transform.localRotation.z, 0, 0);
+                //srb.velocity = new Vector3(AXLE.transform.localRotation.z, 0, 0);
+                srb.velocity = srb.transform.forward;
             else if (AXLE.transform.localRotation.z > 0)
                 //addforce
-                srb.velocity = new Vector3(AXLE.transform.localRotation.z, 0, 0);
+              //  srb.velocity = new Vector3(AXLE.transform.localRotation.z, 0, 0);
+                srb.velocity = -srb.transform.forward;
             //shipvelocity();
 
             //basically when lever is fully down it turns on 

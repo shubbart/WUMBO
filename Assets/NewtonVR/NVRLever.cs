@@ -15,6 +15,7 @@ namespace NewtonVR
         //public GameObject other;
         public Rigidbody srb;
         public Rigidbody jointRigidbody;
+        public GameObject AXLE;
 
         protected virtual float DeltaMagic { get { return 2f; } }
         protected Transform InitialAttachPoint;
@@ -76,7 +77,15 @@ namespace NewtonVR
             CurrentValue = GetValue();
             CurrentLeverPosition = GetPosition();
 
-            shipvelocity();
+            if (AXLE.transform.localRotation.z < 0)
+                //addforce
+                //srb.velocity = new Vector3(AXLE.transform.localRotation.z, 0, 0);
+                srb.velocity = srb.transform.forward;
+            else if (AXLE.transform.localRotation.z > 0)
+                //addforce
+              //  srb.velocity = new Vector3(AXLE.transform.localRotation.z, 0, 0);
+                srb.velocity = -srb.transform.forward;
+            //shipvelocity();
 
             //basically when lever is fully down it turns on 
             //if (LastLeverPosition != LeverPosition.On && CurrentLeverPosition == LeverPosition.On)
@@ -89,18 +98,14 @@ namespace NewtonVR
         protected override void FixedUpdate()
         {
             base.FixedUpdate();
-
-       
-
         }
 
         protected virtual void shipvelocity()
         {
             
-            if(Input.GetKey(KeyCode.E))
-                srb.velocity = new Vector3(CurrentValue * 10f, 0, 0);
-            else
-                srb.velocity = new Vector3(0, 0, 0);
+      
+            //else
+              //  srb.velocity = new Vector3(0, 0, 0);
         }
 
 

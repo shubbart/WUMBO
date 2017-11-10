@@ -1,8 +1,15 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: a75e4d4cb2b0bb14cbc3826eb11e3a28
 folderAsset: yes
 timeCreated: 1509647027
 licenseType: Pro
+=======
+guid: f4e4825f5bbdd584bb6118b05e4a01ac
+folderAsset: yes
+timeCreated: 1510184673
+licenseType: Free
+>>>>>>> Josh
 DefaultImporter:
   userData: 
   assetBundleName: 

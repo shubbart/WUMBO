@@ -6,6 +6,7 @@ public class PlayerManager : MonoBehaviour
 {
     public int health;
     public int collectedOrbs;
+    public GameObject[] orbUI;
 
     public bool activeFrost = false;
     public int maxFrostAmmo = 100;

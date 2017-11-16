@@ -8,6 +8,7 @@ TagManager:
   - Flamethrower
   - Frostgun
   - Gravitygun
+  - DamageText
   layers:
   - Default
   - TransparentFX

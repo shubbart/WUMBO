@@ -7,11 +7,13 @@ public class DealDamageToPlayer : MonoBehaviour
     public int damage;
     GameObject player;
     PlayerManager pManager;
+    GameObject damageText;
 
-	void Start ()
+    void Start ()
     {
         player = GameObject.FindGameObjectWithTag("Player");
         pManager = player.GetComponent<PlayerManager>();
+        damageText = GameObject.FindGameObjectWithTag("DamageText");
 	}
 
     private void OnCollisionEnter(Collision collision)
@@ -19,6 +21,7 @@ public class DealDamageToPlayer : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             pManager.health -= damage;
+            damageText.GetComponent<DamageText>().SetDamage();
             Destroy(gameObject);
         }
     }

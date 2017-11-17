@@ -9,7 +9,7 @@ public class Shoot : MonoBehaviour
 
     public void Fire()
     {
-        GameObject projectilCopy = Instantiate(projectile, transform.position, transform.rotation) as GameObject;
+        GameObject projectilCopy = Instantiate(projectile, transform.position, projectile.transform.rotation) as GameObject;
         Rigidbody rbody = projectilCopy.GetComponent<Rigidbody>();
         rbody.AddForce(transform.forward * firingForce);
     }

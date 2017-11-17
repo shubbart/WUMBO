@@ -93,11 +93,102 @@ namespace NewtonVR
             //LeverEngaged = true;
             //Engage();
             //}
+            //foreach (Transform child in AXLE.transform)
+            //    child.rotation = Quaternion.Euler(0, child.rotation.eulerAngles.y, child.rotation.eulerAngles.z);
+
+            //Debug.Log(ChildCount(GameObject.Find("S.S. Shawny").transform));
         }
+
+        //int ChildCount(Transform t)
+        //{
+        //    int count = 0;
+
+        //    foreach (Transform child in t)
+        //    {
+        //        count++;
+        //        count += ChildCount(child);
+        //    }
+
+        //    return count;
+        //}
 
         protected override void FixedUpdate()
         {
             base.FixedUpdate();
+        }
+
+        protected override void GetTargetValues(out Vector3 targetHandPosition, out Quaternion targetHandRotation, out Vector3 targetItemPosition, out Quaternion targetItemRotation)
+        {
+            if (AttachedHands.Count == 1) //faster path if only one hand, which is the standard scenario
+            {
+                NVRHand hand = AttachedHands[0];
+                if (InteractionPoint != null)
+                {
+                    targetItemPosition = InteractionPoint.position;
+                    targetItemRotation = Quaternion.identity;
+                    //targetItemRotation = InteractionPoint.rotation;
+
+                    targetHandPosition = hand.transform.position;
+                    targetHandRotation = hand.transform.rotation;
+                }
+                else
+                {
+                    targetItemPosition = this.transform.position;
+                    targetItemRotation = this.transform.rotation;
+
+                    targetHandPosition = PickupTransforms[hand].position;
+                    targetHandRotation = PickupTransforms[hand].rotation;
+                }
+            }
+            else
+            {
+                Vector3 cumulativeItemVector = Vector3.zero;
+                Vector4 cumulativeItemRotation = Vector4.zero;
+                Quaternion? firstItemRotation = null;
+                targetItemRotation = Quaternion.identity;
+
+                Vector3 cumulativeHandVector = Vector3.zero;
+                Vector4 cumulativeHandRotation = Vector4.zero;
+                Quaternion? firstHandRotation = null;
+                targetHandRotation = Quaternion.identity;
+
+                for (int handIndex = 0; handIndex < AttachedHands.Count; handIndex++)
+                {
+                    NVRHand hand = AttachedHands[handIndex];
+
+                    if (InteractionPoint != null && handIndex == 0)
+                    {
+                        targetItemRotation = InteractionPoint.rotation;
+                        cumulativeItemVector += InteractionPoint.position;
+
+                        targetHandRotation = hand.transform.rotation;
+                        cumulativeHandVector += hand.transform.position;
+                    }
+                    else
+                    {
+                        targetItemRotation = this.transform.rotation;
+                        cumulativeItemVector += this.transform.position;
+
+                        targetHandRotation = PickupTransforms[hand].rotation;
+                        cumulativeHandVector += PickupTransforms[hand].position;
+                    }
+
+                    if (firstItemRotation == null)
+                    {
+                        firstItemRotation = targetItemRotation;
+                    }
+                    if (firstHandRotation == null)
+                    {
+                        firstHandRotation = targetHandRotation;
+                    }
+
+                    targetItemRotation = Quaternion.Euler(0, targetItemRotation.eulerAngles.y, targetItemRotation.eulerAngles.z); // NVRHelpers.AverageQuaternion(ref cumulativeItemRotation, targetItemRotation, firstItemRotation.Value, handIndex);
+                    targetHandRotation = NVRHelpers.AverageQuaternion(ref cumulativeHandRotation, targetHandRotation, firstHandRotation.Value, handIndex);
+                }
+
+                targetItemPosition = cumulativeItemVector / AttachedHands.Count;
+                targetHandPosition = cumulativeHandVector / AttachedHands.Count;
+            }
         }
 
         protected virtual void shipvelocity()
@@ -137,7 +228,7 @@ namespace NewtonVR
 
             InitialAttachPoint = new GameObject(string.Format("[{0}] InitialAttachPoint", this.gameObject.name)).transform;
             InitialAttachPoint.position = hand.transform.position;
-            InitialAttachPoint.rotation = hand.transform.rotation;
+            //InitialAttachPoint.rotation = Quaternion.Euler(hand.transform.rotation.eulerAngles.x, 0, hand.transform.rotation.eulerAngles.z);
             InitialAttachPoint.localScale = Vector3.one * 0.25f;
             InitialAttachPoint.parent = this.transform;
             

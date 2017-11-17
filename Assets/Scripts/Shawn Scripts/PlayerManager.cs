@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using NewtonVR;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,6 +8,10 @@ public class PlayerManager : MonoBehaviour
     public int health;
     public int collectedOrbs;
     public GameObject[] orbUI;
+    public GameObject frostGunEffect;
+    public GameObject flameGunEffect;
+    public GameObject gravityGunEffectLeft;
+    public GameObject gravityGunEffectRight;
 
     public bool activeFrost = false;
     public int maxFrostAmmo = 100;
@@ -37,6 +42,10 @@ public class PlayerManager : MonoBehaviour
     float gravityRecoverReset;
     public float gravityTick = 1;
     float gravityTickReset;
+    public GameObject controllerLeft;
+    public NVROculusInputDevice contLeft;
+    public GameObject controllerRight;
+    public NVROculusInputDevice contRight;
 
     void Start ()
     {
@@ -46,11 +55,51 @@ public class PlayerManager : MonoBehaviour
         flameRecoverReset = flameRecoverTimer;
         gravityTickReset = gravityTick;
         gravityRecoverReset = gravityRecoverTimer;
+        contLeft = controllerLeft.GetComponent<NVROculusInputDevice>();
+        contRight = controllerRight.GetComponent<NVROculusInputDevice>();
+
 	}
 	
 	void Update ()
     {
-		if(activeFrost && frostAmmo - frostTick >= 0)
+        
+        if (contRight.GetPressDown(NVRButtons.A))
+            activeFlame = !activeFlame;
+        if (activeFlame)
+            flameGunEffect.SetActive(true);
+        else
+            flameGunEffect.SetActive(false);
+        if (flameAmmo - flameTick <= 0)
+            activeFlame = false;
+
+        if (contRight.GetPressDown(NVRButtons.B))
+            activeFrost = !activeFrost;
+        if (activeFrost)
+            frostGunEffect.SetActive(true);
+        else
+            frostGunEffect.SetActive(false);
+        if (frostAmmo - frostTick <= 0)
+            activeFrost = false;
+
+        if (contRight.GetPressDown(NVRButtons.Trigger))
+            activeGravity = !activeGravity;
+        if (activeGravity)
+        {
+            gravityGunEffectLeft.SetActive(true);
+            gravityGunEffectRight.SetActive(true);
+        }
+        else
+        {
+            gravityGunEffectLeft.SetActive(false);
+            gravityGunEffectRight.SetActive(false);
+        }
+        if (gravityAmmo - gravityTick <= 0)
+            activeGravity = false;
+
+
+
+
+        if (activeFrost && frostAmmo - frostTick >= 0)
         {
             frostTick -= Time.deltaTime;
             if(frostTick <= 0)

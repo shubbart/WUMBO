@@ -9,7 +9,7 @@ public class Bounce : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Player")
+        if (other.gameObject.tag == "Ship")
         {
             other.GetComponent<Rigidbody>().AddForce(bounceImpulse);
         }

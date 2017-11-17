@@ -11,7 +11,7 @@ public class TriggerEvent : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Player" && !shooting)
+        if (other.gameObject.tag == "Ship" && !shooting)
         {
             Invoke("DoShoot1", delay);
             shooting = true;

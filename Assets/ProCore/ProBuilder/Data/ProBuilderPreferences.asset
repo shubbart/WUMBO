@@ -12,9 +12,13 @@ MonoBehaviour:
   m_Name: ProBuilderPreferences
   m_EditorClassIdentifier: 
   m_Bool_keys:
+<<<<<<< HEAD
   - pb_SmoothingGroupEditor::m_ShowPreview
   - pb_SmoothingGroupEditor::m_DrawNormals
   - pb_SmoothingGroupEditor::m_PreviewDither
+=======
+  - pbIconGUI
+>>>>>>> 384be787b2ef16dc8cfeb7e846ed7551f7d51e8d
   m_Int_keys:
   - pbHandleAlignment
   - pbDefaultEditLevel
@@ -23,6 +27,7 @@ MonoBehaviour:
   m_Float_keys:
   - pbEditorScroll.x
   - pbEditorScroll.y
+<<<<<<< HEAD
   - pb_SmoothingGroupEditor::m_NormalsSize
   - pb_SmoothingGroupEditor::m_PreviewOpacity
   m_String_keys: []
@@ -35,6 +40,18 @@ MonoBehaviour:
   - 0
   - 0.001
   - 1
+=======
+  - pbWeldDistance
+  m_String_keys: []
+  m_Color_keys: []
+  m_Material_keys: []
+  m_Bool_values: 00
+  m_Int_values: 02000000010000000200000001000000
+  m_Float_values:
+  - 0
+  - 0
+  - 1.01
+>>>>>>> 384be787b2ef16dc8cfeb7e846ed7551f7d51e8d
   m_String_values: []
   m_Color_values: []
   m_Material_values: []

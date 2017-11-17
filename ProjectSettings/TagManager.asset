@@ -9,6 +9,8 @@ TagManager:
   - Frostgun
   - Gravitygun
   - DamageText
+  - Self
+  - Ship
   layers:
   - Default
   - TransparentFX

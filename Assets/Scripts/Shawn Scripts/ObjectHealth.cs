@@ -9,15 +9,16 @@ public class ObjectHealth : MonoBehaviour
     public enum typeOfDeath
     {
         Steam,
-        Vine
+        Vine,
+        Ice
     }
 
     public typeOfDeath deathState;
 
-    void Update ()
+    void Update()
     {
         if (health <= 0 && !isDead)
-            switch(deathState)
+            switch (deathState)
             {
                 case typeOfDeath.Steam:
                     steamDeath();
@@ -25,8 +26,21 @@ public class ObjectHealth : MonoBehaviour
                 case typeOfDeath.Vine:
                     vineDeath();
                     break;
+                case typeOfDeath.Ice:
+                    steamDeath();
+                    break;
             }
-	}
+
+        if (health < 100 && health > 0)
+        {
+            switch (deathState)
+            { 
+                case typeOfDeath.Ice:
+                    iceMelt();
+                    break;
+            }
+        }
+    }
 
     void steamDeath()
     {
@@ -37,5 +51,13 @@ public class ObjectHealth : MonoBehaviour
     void vineDeath()
     {
         Destroy(gameObject);
+    }
+
+    void iceMelt()
+    {
+        if(transform.localScale.x > 0)
+        transform.localScale -= new Vector3(1, 1 , 1 ) * .15f * Time.deltaTime;
+        if(transform.localScale.x <= .05)
+            Destroy(gameObject);
     }
 }

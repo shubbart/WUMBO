@@ -91,7 +91,6 @@ GameObject:
   - component: {fileID: 23574566260802780}
   - component: {fileID: 33906760470432542}
   - component: {fileID: 114418257319466358}
-  - component: {fileID: 114469682111705920}
   m_Layer: 0
   m_Name: KeyHole
   m_TagString: Untagged
@@ -157,7 +156,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1446973324790694}
   m_LocalRotation: {x: 0.50000006, y: 0.5, z: 0.50000006, w: 0.5}
-  m_LocalPosition: {x: -0.116, y: 2.421, z: 4.467}
+  m_LocalPosition: {x: -3.12, y: 2.421, z: 4.47}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4481533287690716}
@@ -213,7 +212,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1006252299199310}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.068, y: -0.36, z: 0}
+  m_LocalPosition: {x: 0, y: -0.36, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4498755214250652}
@@ -359,8 +358,8 @@ Light:
   serializedVersion: 8
   m_Type: 2
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 1
-  m_Range: 5
+  m_Intensity: 0.75
+  m_Range: 10
   m_SpotAngle: 30
   m_CookieSize: 10
   m_Shadows:
@@ -3218,20 +3217,6 @@ MonoBehaviour:
   m_selectedFaces: 
   m_SelectedEdges: []
   m_selectedTriangles: 
---- !u!114 &114469682111705920
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1446973324790694}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 932253f5b4ef4cc409f93574252f80e1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dropOffText: {fileID: 0}
-  usedOrb: {fileID: 0}
-  isCompleted: 0
 --- !u!114 &114688360548761514
 MonoBehaviour:
   m_ObjectHideFlags: 1

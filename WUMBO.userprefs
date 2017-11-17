@@ -1,8 +1,8 @@
 ﻿<Properties StartupItem="WUMBO.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Temp\Compiled-Legacy Shaders-Transparent-Specular.shader">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Standard Assets\Utility\PlatformSpecificContent.cs">
     <Files>
-      <File FileName="Temp\Compiled-Legacy Shaders-Transparent-Specular.shader" Line="38" Column="37" />
+      <File FileName="Assets\Standard Assets\Utility\PlatformSpecificContent.cs" Line="15" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

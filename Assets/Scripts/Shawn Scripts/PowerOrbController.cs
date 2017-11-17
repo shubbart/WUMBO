@@ -45,6 +45,8 @@ public class PowerOrbController : MonoBehaviour
         if(collision.gameObject.tag == "Player")
         {
             ++pManager.collectedOrbs;
+            if (pManager.collectedOrbs >= 1)
+                pManager.orbUI[pManager.collectedOrbs - 1].SetActive(true);          
             Destroy(gameObject);
         }
     }

@@ -18,7 +18,7 @@ public class DealDamageToPlayer : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "Ship")
+        if (collision.gameObject.tag == "Player")
         {
             pManager.health -= damage;
             damageText.GetComponent<DamageText>().SetDamage();

@@ -39,7 +39,7 @@ public class OrbDropOff : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if (other.tag == "Ship" && pManager.collectedOrbs > 0 && contRight.GetPressDown(NVRButtons.Grip) && !isCompleted)
+        if (other.tag == "Ship" && pManager.collectedOrbs > 0 && contRight.GetPressDown(NVRButtons.A) && !isCompleted)
         {
             --pManager.collectedOrbs;
             pManager.orbUI[pManager.collectedOrbs].SetActive(false);

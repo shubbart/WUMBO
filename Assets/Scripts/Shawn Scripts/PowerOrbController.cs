@@ -42,7 +42,7 @@ public class PowerOrbController : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.tag == "Ship")
+        if(collision.gameObject.tag == "Player")
         {
             ++pManager.collectedOrbs;
             if (pManager.collectedOrbs >= 1)

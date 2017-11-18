@@ -1996,7 +1996,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5db8901a00576f14ebe411e7b7aceb45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  blinkTimer: 1
+  blinkTimer: 0.75
 --- !u!114 &114106641132290584
 MonoBehaviour:
   m_ObjectHideFlags: 1

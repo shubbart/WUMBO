@@ -7,6 +7,10 @@ public class PlayerManager : MonoBehaviour
 {
     public int health;
     public int collectedOrbs;
+    public bool turnInOrb;
+
+    public GameObject keyHole;
+
     public GameObject[] orbUI;
     public GameObject frostGunEffect;
     public GameObject flameGunEffect;
@@ -43,9 +47,9 @@ public class PlayerManager : MonoBehaviour
     public float gravityTick = 1;
     float gravityTickReset;
     public GameObject controllerLeft;
-    public NVROculusInputDevice contLeft;
+    public NVRSteamVRInputDevice contLeft;
     public GameObject controllerRight;
-    public NVROculusInputDevice contRight;
+    public NVRSteamVRInputDevice contRight;
 
     void Start ()
     {
@@ -55,15 +59,15 @@ public class PlayerManager : MonoBehaviour
         flameRecoverReset = flameRecoverTimer;
         gravityTickReset = gravityTick;
         gravityRecoverReset = gravityRecoverTimer;
-        contLeft = controllerLeft.GetComponent<NVROculusInputDevice>();
-        contRight = controllerRight.GetComponent<NVROculusInputDevice>();
+        contLeft = controllerLeft.GetComponent<NVRSteamVRInputDevice>();
+        contRight = controllerRight.GetComponent<NVRSteamVRInputDevice>();
 
 	}
 	
 	void Update ()
     {
-        
-        if (contRight.GetPressDown(NVRButtons.A))
+
+        if (contRight.GetPressDown(NVRButtons.Touchpad))
             activeFlame = !activeFlame;
         if (activeFlame)
             flameGunEffect.SetActive(true);
@@ -72,7 +76,7 @@ public class PlayerManager : MonoBehaviour
         if (flameAmmo - flameTick <= 0)
             activeFlame = false;
 
-        if (contRight.GetPressDown(NVRButtons.B))
+        if (contLeft.GetPressDown(NVRButtons.Touchpad))
             activeFrost = !activeFrost;
         if (activeFrost)
             frostGunEffect.SetActive(true);
@@ -81,7 +85,7 @@ public class PlayerManager : MonoBehaviour
         if (frostAmmo - frostTick <= 0)
             activeFrost = false;
 
-        if (contRight.GetPressDown(NVRButtons.Trigger))
+        if (contRight.GetPressDown(NVRButtons.Trigger) && contLeft.GetPressDown(NVRButtons.Trigger))
             activeGravity = !activeGravity;
         if (activeGravity)
         {
@@ -96,6 +100,14 @@ public class PlayerManager : MonoBehaviour
         if (gravityAmmo - gravityTick <= 0)
             activeGravity = false;
 
+        if (turnInOrb && contRight.GetPressDown(NVRButtons.Trigger))
+        {
+            --collectedOrbs;
+            orbUI[collectedOrbs].SetActive(false);
+            keyHole.GetComponent<OrbDropOff>().dropOffText.SetActive(false);
+            keyHole.GetComponent<OrbDropOff>().usedOrb.SetActive(true);
+            keyHole.GetComponent<OrbDropOff>().isCompleted = true;
+        }
 
 
 

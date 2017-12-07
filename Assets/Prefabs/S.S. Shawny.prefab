@@ -105,6 +105,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4871493842018466}
   - component: {fileID: 114770262894899982}
+  - component: {fileID: 114264374537278642}
   m_Layer: 0
   m_Name: LeftHand
   m_TagString: Untagged
@@ -620,6 +621,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4975223168343618}
   - component: {fileID: 114662321705604760}
+  - component: {fileID: 114475461593920366}
   m_Layer: 0
   m_Name: RightHand
   m_TagString: Untagged
@@ -2257,6 +2259,17 @@ MonoBehaviour:
   frostGauge: 0
   flameGauge: 1
   gravityGauge: 0
+--- !u!114 &114264374537278642
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1112280821621224}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ddc5079d7f6872142b7e595c6a118090, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114289767156686532
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2268,8 +2281,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 692596da9ff9cdd4aa3dd605c1e0df5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SteamVREnabled: 0
-  OculusSDKEnabled: 1
+  SteamVREnabled: 1
+  OculusSDKEnabled: 0
   InteractionStyle: 0
   PhysicalHands: 1
   MakeControllerInvisibleOnInteraction: 0
@@ -2346,7 +2359,7 @@ MonoBehaviour:
   LayersThatBlockLaser:
     serializedVersion: 2
     m_Bits: 4294967295
-  CursorSprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  CursorSprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 3}
   CursorMaterial: {fileID: 0}
   NormalCursorScale: 0.05
   LaserEnabled: 1
@@ -2446,6 +2459,17 @@ MonoBehaviour:
   AttachedHands: []
   srb: {fileID: 54420345939214970}
   speed: 0.1
+--- !u!114 &114475461593920366
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1756107743759030}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ddc5079d7f6872142b7e595c6a118090, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114502714235153672
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2916,7 +2940,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Press 'A' to insert orb
+  m_Text: Press 'Right Trigger' to insert orb
 --- !u!114 &114884323402956484
 MonoBehaviour:
   m_ObjectHideFlags: 1

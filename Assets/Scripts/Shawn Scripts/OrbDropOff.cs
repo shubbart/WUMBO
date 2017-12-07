@@ -11,9 +11,9 @@ public class OrbDropOff : MonoBehaviour
     PlayerManager pManager;
 
     public GameObject controllerLeft;
-    public NVROculusInputDevice contLeft;
+    public NVRSteamVRInputDevice contLeft;
     public GameObject controllerRight;
-    public NVROculusInputDevice contRight;
+    public NVRSteamVRInputDevice contRight;
 
     public bool isCompleted;
 
@@ -21,32 +21,40 @@ public class OrbDropOff : MonoBehaviour
     {
         player = GameObject.FindGameObjectWithTag("Player");
         pManager = player.GetComponent<PlayerManager>();
-        contLeft = controllerLeft.GetComponent<NVROculusInputDevice>();
-        contRight = controllerRight.GetComponent<NVROculusInputDevice>();
+        contLeft = controllerLeft.GetComponent<NVRSteamVRInputDevice>();
+        contRight = controllerRight.GetComponent<NVRSteamVRInputDevice>();
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.tag == "Ship" && pManager.collectedOrbs > 0 && !isCompleted)
+        if (other.tag == "Ship" && pManager.collectedOrbs > 0 && !isCompleted)
+        {
             dropOffText.SetActive(true);
+            pManager.turnInOrb = true;
+            pManager.keyHole = gameObject;
+        }
     }
 
     private void OnTriggerExit(Collider other)
     {
         if (other.tag == "Ship")
-            dropOffText.SetActive(false);
-    }
-
-    private void OnTriggerStay(Collider other)
-    {
-        if (other.tag == "Ship" && pManager.collectedOrbs > 0 && contRight.GetPressDown(NVRButtons.A) && !isCompleted)
         {
-            --pManager.collectedOrbs;
-            pManager.orbUI[pManager.collectedOrbs].SetActive(false);
             dropOffText.SetActive(false);
-            usedOrb.SetActive(true);
-            isCompleted = true;
+            pManager.turnInOrb = false;
+            pManager.keyHole = null;
         }
-
     }
+
+    //private void OnTriggerStay(Collider other)
+    //{
+    //    if (other.tag == "Ship" && pManager.collectedOrbs > 0 && contRight.GetPressDown(NVRButtons.Trigger) && !isCompleted)
+    //    {
+    //        --pManager.collectedOrbs;
+    //        pManager.orbUI[pManager.collectedOrbs].SetActive(false);
+    //        dropOffText.SetActive(false);
+    //        usedOrb.SetActive(true);
+    //        isCompleted = true;
+    //    }
+
+    //}
 }
